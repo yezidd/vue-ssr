@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/yezidd/vue-ssr/issues"
   },
-  "homepage": "https://github.com/yezidd/vue-ssr#readme"
+  "homepage": "https://github.com/yezidd/vue-ssr#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "vue": "^2.5.16",
+    "vue-server-renderer": "^2.5.16"
+  },
+  "devDependencies": {
+    "webpack": "^3.11.3",
+    "webpack-dev-server": "^3.1.4"
+  }
 }
