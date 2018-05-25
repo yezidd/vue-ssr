@@ -3,8 +3,10 @@
  */
 import Vue from 'vue'
 import Router from 'vue-router'
-import Bar from '../pages/Bar';
-import Foo from '../pages/Foo';
+// import Bar from '../pages/Bar';
+// import Foo from '../pages/Foo';
+const Foo = () => import('../pages/Foo')
+const Bar = () => import('../pages/Bar')
 
 Vue.use(Router);
 
