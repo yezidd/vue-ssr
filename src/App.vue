@@ -2,6 +2,15 @@
     <div id="app">
         <img src="./assest/logo.png">
         <h1>{{ msg }}</h1>
+        <router-link to="/bar">
+            bar---->
+        </router-link>
+        <router-link to="/foo">
+            foo---->
+        </router-link>
+        <router-link to="/list">
+            list---->
+        </router-link>
         <router-view></router-view>
     </div>
 </template>
