@@ -1,21 +1,15 @@
 <template>
     <div id="app">
         <img src="./assest/logo.png">
-        <h1>{{ msg }}--hot</h1>
-        <h2>Essential Links--hot---hot</h2>
-        <ul>
-            <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-            <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-            <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-            <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-        </ul>
+        <h1>{{ msg }}</h1>
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
   export default {
     name: 'app',
-    data () {
+    data() {
       return {
         msg: 'Welcome to Your Vue.js App'
       }

@@ -10,7 +10,11 @@ const app = express()
 const resolve = file => path.resolve(__dirname, file);
 
 // 生成服务端渲染函数
-const bundle = createRenderer(require('./dist/vue-ssr-server-bundle.json'))
+const renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
+  runInNewContext: false,
+  template: fs.readFileSync(resolve("./index.tpl.html"), 'UTF-8'),
+  clientManifest: require('./dist/vue-ssr-client-manifest')
+})
 
 // 引入静态资源
 app.use(express.static(path.join(__dirname, 'dist')))
@@ -19,12 +23,17 @@ app.use(express.static(path.join(__dirname, 'dist')))
 
 app.get('*', (req, res) => {
   const context = {url: req.url}
-  // 这里无需传入一个应用程序，因为在执行 bundle 时已经自动创建过。
-  // 现在我们的服务器与应用程序已经解耦！
-  bundle.renderToString((err, html) => {
-    // 处理异常……
-    console.log(html, '---')
-    res.end(html)
+
+  renderer.renderToString(context, (err, html) => {
+    if (err) {
+      if (err.code === 404) {
+        res.status(404).end('Page not found')
+      } else {
+        res.status(500).end('Internal Server Error')
+      }
+    } else {
+      res.end(html)
+    }
   })
 })
 
