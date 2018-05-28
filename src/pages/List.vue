@@ -11,16 +11,22 @@
 
 <script>
   import ListItem from '../components/ListItem';
-  import {mapActions,mapState} from 'vuex';
+  import {mapActions, mapState} from 'vuex';
 
   export default {
     name: "list",
     data() {
-      return {
-      }
+      return {}
     },
     components: {
       "list-item": ListItem
+    },
+    beforeCreate() {
+
+    },
+    //服务端渲染服务端获取接口数据
+    asyncData({store, router}) {
+      return store.dispatch('getList');
     },
     beforeMount() {
       console.log(this.$store, "----");

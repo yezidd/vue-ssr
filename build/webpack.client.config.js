@@ -15,6 +15,8 @@ const isProduction = process.env.NODE_ENV === 'production'
 
 let config = merge(baseConfig, {
   entry: path.resolve(__dirname, "../src/client_entry.js"),
+  // 对 bundle renderer 提供 source map 支持
+  devtool: 'source-map',
   plugins: [
 
 
