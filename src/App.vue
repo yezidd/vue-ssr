@@ -3,10 +3,10 @@
         <img src="./assest/logo.png">
         <h1>{{ msg }}</h1>
         <router-link to="/bar">
-            bar---->
+            bar--2-222->
         </router-link>
         <router-link to="/foo">
-            foo---->
+            22334232
         </router-link>
         <router-link to="/list">
             list---->

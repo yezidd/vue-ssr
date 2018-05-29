@@ -14,6 +14,7 @@ const resolve = file => path.resolve(__dirname, file);
 let renderer;
 
 if (isProduction) {
+  console.log("-----production----")
   // 生成服务端渲染函数
   renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
     runInNewContext: false,
@@ -21,7 +22,15 @@ if (isProduction) {
     clientManifest: require('./dist/vue-ssr-client-manifest')
   });
 } else {
-  renderer = devServer(app)
+  renderer = devServer(app, {
+    update: (bundle, clientManifest) => {
+      renderer = createBundleRenderer(bundle, {
+        runInNewContext: false,
+        template: fs.readFileSync(resolve("./index.tpl.html"), 'UTF-8'),
+        clientManifest: clientManifest
+      });
+    }
+  })
 }
 
 
