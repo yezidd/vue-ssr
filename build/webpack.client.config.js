@@ -23,14 +23,14 @@ let config = merge(baseConfig, {
     // 此插件在输出目录中
     // 生成 `vue-ssr-client-manifest.json`。
     new VueSSRClientPlugin(),
-    new CleanWebpackPlugin(
-      './dist',　 //匹配删除的文件
-      {
-        root: path.resolve(__dirname, "../"),       　　　　　　　　　　//根目录
-        verbose: true,        　　　　　　　　　　//开启在控制台输出信息
-        dry: false        　　　　　　　　　　//启用删除文件
-      }
-    )
+    // new CleanWebpackPlugin(
+    //   './dist',　 //匹配删除的文件
+    //   {
+    //     root: path.resolve(__dirname, "../"),       　　　　　　　　　　//根目录
+    //     verbose: true,        　　　　　　　　　　//开启在控制台输出信息
+    //     dry: false        　　　　　　　　　　//启用删除文件
+    //   }
+    // )
   ]
 })
 

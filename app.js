@@ -6,15 +6,24 @@ const {
   createRenderer
 } = require('vue-server-renderer')
 
+const devServer = require('./build/dev-server');
+const isProduction = process.env.NODE_ENV === 'production'
 const app = express()
 const resolve = file => path.resolve(__dirname, file);
 
-// 生成服务端渲染函数
-const renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
-  runInNewContext: false,
-  template: fs.readFileSync(resolve("./index.tpl.html"), 'UTF-8'),
-  clientManifest: require('./dist/vue-ssr-client-manifest')
-})
+let renderer;
+
+if (isProduction) {
+  // 生成服务端渲染函数
+  renderer = createBundleRenderer(require('./dist/vue-ssr-server-bundle.json'), {
+    runInNewContext: false,
+    template: fs.readFileSync(resolve("./index.tpl.html"), 'UTF-8'),
+    clientManifest: require('./dist/vue-ssr-client-manifest')
+  });
+} else {
+  renderer = devServer(app)
+}
+
 
 // 引入静态资源
 app.use(express.static(path.join(__dirname, 'dist')))
